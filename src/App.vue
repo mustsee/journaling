@@ -1,11 +1,11 @@
 <template>
     <v-app>
         <v-content class="bg-color">
-            <login class="fullHeight" :style="{display: 'block'}"/>
-            <habits-list class="fullHeight" />
-            <calendar class="fullHeight "/>
-            <how-was-your-day class="fullHeight" />
-            <habits-done class="fullHeight" />
+            <login :style="{display: 'block', height: screenHeight}" />
+            <habits-list :style="{height: screenHeight}" />
+            <calendar :style="{height: screenHeight}" />
+            <how-was-your-day :style="{height: screenHeight}" />
+            <habits-done :style="{height: screenHeight}" />
         </v-content>
     </v-app>
 </template>
@@ -27,11 +27,13 @@
       return {
         showUserNameScreen: 'block',
         state: HBStore.state,
+        screenHeight: '',
       }
     },
     mounted() {
       if (this.state.userName) this.showUserNameScreen = 'none';
       window.scrollTo(0,0);
+      this.screenHeight = window.innerHeight + 'px';
     }
   }
 </script>
@@ -48,8 +50,5 @@
 
     .bg-color {
         background-color: hsl(51, 100%, 59%);
-    }
-    .fullHeight {
-        height: 100vh;
     }
 </style>
