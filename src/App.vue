@@ -1,28 +1,55 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <v-app>
+        <v-content class="bg-color">
+            <login class="fullHeight" :style="{display: 'block'}"/>
+            <habits-list class="fullHeight" />
+            <calendar class="fullHeight "/>
+            <how-was-your-day class="fullHeight" />
+            <habits-done class="fullHeight" />
+        </v-content>
+    </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import Login from './components/Login';
+  import HabitsList from './components/HabitsList';
+  import Calendar from './components/Calendar';
+  import HowWasYourDay from './components/HowWasYourDay';
+  import HabitsDone from './components/HabitsDone';
+  import HBStore from './store/habitTrackerStore';
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  export default {
+    name: 'App',
+    components: {
+      Login, HabitsList, Calendar, HowWasYourDay, HabitsDone
+    },
+    data() {
+      return {
+        showUserNameScreen: 'block',
+        state: HBStore.state,
+      }
+    },
+    mounted() {
+      if (this.state.userName) this.showUserNameScreen = 'none';
+      window.scrollTo(0,0);
+    }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    html {
+        scroll-behavior: smooth;
+        user-select: none;
+    }
+
+    button {
+        overflow: hidden;
+    }
+
+    .bg-color {
+        background-color: hsl(51, 100%, 59%);
+    }
+    .fullHeight {
+        height: 100vh;
+    }
 </style>
