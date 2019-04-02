@@ -33,7 +33,7 @@
     mounted() {
       if (this.state.userName) this.showUserNameScreen = 'none';
       window.scrollTo(0,0);
-      this.screenHeight = window.innerHeight + 'px';
+      this.screenHeight = window.screen.height + 'px';
     }
   }
 </script>
